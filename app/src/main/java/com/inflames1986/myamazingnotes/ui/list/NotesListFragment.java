@@ -1,5 +1,6 @@
 package com.inflames1986.myamazingnotes.ui.list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,9 +23,30 @@ import java.util.List;
 
 public class NotesListFragment extends Fragment implements NotesListView {
 
+    public interface OnNoteClicked {
+        void onNoteOnClicked(Note note);
+    }
+
     private NotesListPresenter presenter;
 
     private LinearLayout container;
+
+    private OnNoteClicked onNoteClicked;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnNoteClicked) {
+            onNoteClicked = (OnNoteClicked)context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        onNoteClicked = null;
+        super.onDetach();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,9 +80,9 @@ public class NotesListFragment extends Fragment implements NotesListView {
             noteItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(requireContext(), NoteDetailsActivity.class);
-                    intent.putExtra(NoteDetailsActivity.ARG_NOTE, note);
-                    startActivity(intent);
+                    if (onNoteClicked != null) {
+                        onNoteClicked.onNoteOnClicked(note);
+                    }
                 }
             });
 
