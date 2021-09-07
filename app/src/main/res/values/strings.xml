@@ -17,4 +17,12 @@
     <string name="fifthJan">05.01.2021</string>
     <string name="note_desc">NoteDesc</string>
     <string name="note_date">NoteDate</string>
+    <string name="action_notes">Notes</string>
+    <string name="calendar">Calendar</string>
+    <string name="family_notes">Family Notes</string>
+    <string name="health_notes">Health Notes</string>
+    <string name="sport_notes">Sport Notes</string>
+    <string name="work_notes">Work Notes</string>
+    <string name="main_notes">Main Notes</string>
+    <string name="note_nav_driver">Note navigation driver</string>
 </resources>
