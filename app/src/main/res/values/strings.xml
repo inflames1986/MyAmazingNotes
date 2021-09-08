@@ -25,4 +25,6 @@
     <string name="work_notes">Work Notes</string>
     <string name="main_notes">Main Notes</string>
     <string name="note_nav_driver">Note navigation driver</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
 </resources>
