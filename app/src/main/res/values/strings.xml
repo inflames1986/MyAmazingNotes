@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">My Amazing Notes</string>
+    <string name="note_monday">Понедельник</string>
+    <string name="note_tuesday">Вторник</string>
+    <string name="note_wednesday">Среда</string>
+    <string name="note_thursday">Четверг</string>
+    <string name="note_friday">Пятница</string>
+    <string name="descThueday">Заметка 1 - понедельник</string>
+    <string name="descTuesday">Заметка 2 - вторник</string>
+    <string name="descWednesday">Заметка 3 - среда</string>
+    <string name="descThursday">Заметка 4 - четверг</string>
+    <string name="descFriday">Заметка 5 - пятница</string>
+    <string name="firstJan">01.01.2021</string>
+    <string name="secondJan">02.01.2021</string>
+    <string name="thirdJan">03.01.2021</string>
+    <string name="fourthJan">04.01.2021</string>
+    <string name="fifthJan">05.01.2021</string>
+    <string name="note_desc">NoteDesc</string>
+    <string name="note_date">NoteDate</string>
 </resources>
