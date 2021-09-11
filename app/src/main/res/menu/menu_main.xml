@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mainnotes"
+        android:title="@string/main_notes"
+        android:icon="@color/design_default_color_on_primary"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/workNotes"
+        android:title="@string/work_notes"
+        android:icon="@color/design_default_color_on_primary"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/sportNotes"
+        android:title="@string/sport_notes"
+        android:icon="@color/design_default_color_on_primary"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/healthNotes"
+        android:title="@string/health_notes"
+        android:icon="@color/design_default_color_on_primary"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/familyNotes"
+        android:title="@string/family_notes"
+        android:icon="@color/design_default_color_on_primary"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/mtrl_calendar_day_selector_frame"
+        android:title="@string/calendar"
+        android:icon="@color/design_default_color_on_primary"
+        app:showAsAction="ifRoom" />
+
+</menu>

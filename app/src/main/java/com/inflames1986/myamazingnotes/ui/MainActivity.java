@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements NotesListFragment
                     .beginTransaction()
                     .replace(R.id.details_container, NoteDetailsFragment.newInstance(note), null)
                     .commit();
-            
+
         } else {
             Intent intent = new Intent(this, NoteDetailsActivity.class);
             intent.putExtra(NoteDetailsActivity.ARG_NOTE, note);
