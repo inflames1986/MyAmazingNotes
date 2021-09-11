@@ -17,6 +17,12 @@ public class DeviceNotesRepository implements NotesRepository {
         notes.add(new Note(R.string.note_thursday, R.string.image_url4, R.string.descThursday, R.string.fourthJan));
         notes.add(new Note(R.string.note_friday, R.string.image_url5, R.string.descFriday, R.string.fifthJan));
 
+        for (int i = 0; i < 10; i++) {
+
+            notes.add(new Note(R.string.note_friday, R.string.image_url5, R.string.descFriday, R.string.fifthJan));
+
+        }
+
         return notes;
     }
 }

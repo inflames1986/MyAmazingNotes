@@ -25,10 +25,6 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/container"
                 android:layout_width="match_parent"
@@ -38,7 +34,6 @@
                 android:name="com.inflames1986.myamazingnotes.ui.list.NotesListFragment"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        </ScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
