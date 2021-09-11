@@ -1,5 +1,6 @@
 package com.inflames1986.myamazingnotes.ui.list;
 
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +25,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         date.clear();
         date.addAll(toSet);
 
-
     }
+
+    Resources res = getResources();
+
+    private Resources getResources() {
+        return res;
+    }
+
+    public final String getString(int resId) {
+        return getResources().getString(resId);
+    }
+
 
     @Override
     public int getItemViewType(int position) {
@@ -46,7 +57,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         Note note = date.get(position);
 
         holder.getTitle().setText(note.getTitle());
-        Glide.with(holder.getImage()).load(getString(note.getImage())).into(holder.getImage());
+        Glide.with (holder.getImage()).load(getString(note.getImage(res))).into(holder.getImage());
         holder.getDesc().setText(note.getDesc());
         holder.getDate().setText(note.getDate());
 
