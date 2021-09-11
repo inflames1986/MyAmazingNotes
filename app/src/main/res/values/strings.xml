@@ -1,4 +1,9 @@
 <resources>
+    <string name="image_url">https://image.freepik.com/free-vector/autumn-falling-leaves-background_29865-875.jpg</string>
+    <string name="image_url2">https://static.vecteezy.com/system/resources/previews/001/233/303/original/autumn-leaves-falling-on-floor-vector.jpg</string>
+    <string name="image_url3">https://img5.goodfon.ru/original/3200x1200/8/c7/osen-listia-fon-doski-colorful-klen-wood-background-autum-11.jpg</string>
+    <string name="image_url4">https://i.pinimg.com/736x/4f/35/af/4f35af09996b3332f23119d8132fbee0.jpg</string>
+    <string name="image_url5">https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg</string>
     <string name="app_name">My Amazing Notes</string>
     <string name="note_monday">Понедельник</string>
     <string name="note_tuesday">Вторник</string>
