@@ -1,6 +1,5 @@
 package com.inflames1986.myamazingnotes.domain;
 
-import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -19,9 +18,7 @@ public class Note implements Parcelable {
         return title;
     }
 
-    public int getImage(Resources res) {
-        return image;
-    }
+    public int getImage() { return image;  }
 
     public int getDesc() {
         return desc;
