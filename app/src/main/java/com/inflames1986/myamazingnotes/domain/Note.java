@@ -7,25 +7,45 @@ import androidx.annotation.StringRes;
 
 public class Note implements Parcelable {
 
-    @StringRes
-    private final int noteName;
-
-    @StringRes
-    private final int noteDesc;
-
-    @StringRes
-    private final int noteDate;
-
-    public Note(int noteName, int noteDesc, int noteDate) {
-        this.noteName = noteName;
-        this.noteDesc = noteDesc;
-        this.noteDate = noteDate;
+    public Note(int title, int image, int desc, int date) {
+        this.title = title;
+        this.image = image;
+        this.desc = desc;
+        this.date = date;
     }
 
+    public int getTitle() {
+        return title;
+    }
+
+    public int getImage() { return image;  }
+
+    public int getDesc() {
+        return desc;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    @StringRes
+    private final int title;
+
+    @StringRes
+    private final int image;
+
+    @StringRes
+    private final int desc;
+
+    @StringRes
+    private final int date;
+
+
     protected Note(Parcel in) {
-        noteName = in.readInt();
-        noteDesc = in.readInt();
-        noteDate = in.readInt();
+        title = in.readInt();
+        image = in.readInt();
+        desc = in.readInt();
+        date = in.readInt();
     }
 
     public static final Creator<Note> CREATOR = new Creator<Note>() {
@@ -40,18 +60,6 @@ public class Note implements Parcelable {
         }
     };
 
-    public int getNoteName() {
-        return noteName;
-    }
-
-    public int getNoteDesc() {
-        return noteDesc;
-    }
-
-    public int getNoteDate() {
-        return noteDate;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -59,8 +67,9 @@ public class Note implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(noteName);
-        parcel.writeInt(noteDesc);
-        parcel.writeInt(noteDate);
+        parcel.writeInt(title);
+        parcel.writeInt(image);
+        parcel.writeInt(desc);
+        parcel.writeInt(date);
     }
 }

@@ -37,13 +37,16 @@ public class NoteDetailsFragment extends Fragment {
 
         Note note = getArguments().getParcelable(ARG_NOTE);
 
-        TextView noteName = view.findViewById(R.id.note_name);
-        noteName.setText(note.getNoteName());
+        TextView title = view.findViewById(R.id.note_name);
+        title.setText(note.getTitle());
 
-        TextView noteDesc = view.findViewById(R.id.note_desc);
-        noteDesc.setText(note.getNoteDesc());
+//        ImageView image = view.findViewById(R.id.note_image);
+//        image.setImageResource(note.getImage());
 
-        TextView noteDate = view.findViewById(R.id.note_date);
-        noteDate.setText(note.getNoteDate());
+        TextView desc = view.findViewById(R.id.note_desc);
+        desc.setText(note.getDesc());
+
+        TextView date = view.findViewById(R.id.note_date);
+        date.setText(note.getDate());
     }
 }
