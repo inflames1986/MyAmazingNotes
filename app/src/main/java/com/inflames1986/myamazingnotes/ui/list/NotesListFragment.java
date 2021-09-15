@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +29,10 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
     private final NotesAdapter adapter = new NotesAdapter();
 
+    private ProgressBar progressBar;
+
     private OnNoteClicked onNoteClicked;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -62,6 +66,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//        progressBar = view.findViewById(R.id.progress_bar);
+
         RecyclerView notesList = view.findViewById(R.id.notes_list);
         notesList.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         notesList.setAdapter(adapter);
@@ -69,10 +75,20 @@ public class NotesListFragment extends Fragment implements NotesListView {
         presenter.requestNotes();
     }
 
+
     @Override
     public void showNotes(List<Note> notes) {
-
         adapter.setNotes(notes);
+        adapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressBar.setVisibility(View.GONE);
     }
 }

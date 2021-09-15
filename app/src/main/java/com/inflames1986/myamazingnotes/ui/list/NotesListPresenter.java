@@ -1,5 +1,6 @@
 package com.inflames1986.myamazingnotes.ui.list;
 
+import com.inflames1986.myamazingnotes.domain.Callback;
 import com.inflames1986.myamazingnotes.domain.Note;
 import com.inflames1986.myamazingnotes.domain.NotesRepository;
 
@@ -17,9 +18,15 @@ public class NotesListPresenter {
     }
 
     public void requestNotes() {
+//        view.showProgress();
 
-        List<Note> result = repository.getNotes();
+        repository.getNotes(new Callback<List<Note>>() {
+            @Override
+            public void onSuccess(List<Note> data) {
+                view.showNotes(data);
 
-        view.showNotes(result);
+//                view.hideProgress();
+            }
+        });
     }
 }
