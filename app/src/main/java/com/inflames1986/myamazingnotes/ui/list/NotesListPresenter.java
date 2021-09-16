@@ -19,14 +19,11 @@ public class NotesListPresenter {
     }
 
     public void requestNotes() {
-//        view.showProgress();
 
         repository.getNotes(new Callback<List<Note>>() {
             @Override
             public void onSuccess(List<Note> data) {
                 view.showNotes(data);
-
-//                view.hideProgress();
             }
         });
     }
@@ -37,6 +34,16 @@ public class NotesListPresenter {
             @Override
             public void onSuccess(Note data) {
                 view.onNoteAdded(data);
+            }
+        });
+    }
+
+    public void removeNote(Note selectedNote) {
+
+        repository.removeNote(selectedNote, new Callback<Void>() {
+            @Override
+            public void onSuccess(Void data) {
+                view.onNoteRemoved(selectedNote);
             }
         });
     }

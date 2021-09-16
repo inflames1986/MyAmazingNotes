@@ -21,13 +21,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     private final ArrayList<Note> date = new ArrayList<>();
 
-    private  OnNoteClickedListener listener;
+    private OnNoteClickedListener listener;
 
     private OnNoteLongClickedListener longClickedListener;
 
 
-
-    private Fragment fragment;
+    private final Fragment fragment;
 
     public NotesAdapter(Fragment fragment) {
         this.fragment = fragment;
@@ -87,6 +86,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     public void setLongClickedListener(OnNoteLongClickedListener longClickedListener) {
         this.longClickedListener = longClickedListener;
+    }
+
+    public int removeNote(Note selectedNote) {
+
+        for (int i = 0; i < date.size(); i++) {
+            if (date.get(i).equals(selectedNote)) {
+                date.remove(i);
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     interface OnNoteLongClickedListener {

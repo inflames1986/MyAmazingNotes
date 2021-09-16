@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.StringRes;
 
+import java.util.Objects;
+
 public class Note implements Parcelable {
 
     public Note(int title, int image, int desc, int date) {
@@ -71,5 +73,18 @@ public class Note implements Parcelable {
         parcel.writeInt(image);
         parcel.writeInt(desc);
         parcel.writeInt(date);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return title == note.title && image == note.image && desc == note.desc && date == note.date;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, image, desc, date);
     }
 }

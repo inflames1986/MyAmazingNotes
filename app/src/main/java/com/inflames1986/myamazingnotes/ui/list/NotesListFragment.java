@@ -118,6 +118,13 @@ public class NotesListFragment extends Fragment implements NotesListView {
     }
 
     @Override
+    public void onNoteRemoved(Note selectedNote) {
+        int index = adapter.removeNote(selectedNote);
+
+        adapter.notifyItemRemoved(index);
+    }
+
+    @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
@@ -128,7 +135,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_delete) {
-            Toast.makeText(requireContext(), "Delete " + getString(selectedNote.getTitle()), Toast.LENGTH_SHORT).show();
+
+            presenter.removeNote(selectedNote);
             return true;
         }
         if (item.getItemId() == R.id.action_update) {

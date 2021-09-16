@@ -14,5 +14,5 @@ public interface NotesListView {
 
     void onNoteAdded(Note note);
 
-
+    void onNoteRemoved(Note selectedNote);
 }
