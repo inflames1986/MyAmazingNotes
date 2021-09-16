@@ -1,4 +1,4 @@
-package com.inflames1986.myamazingnotes.ui.details;
+package com.inflames1986.myamazingnotes.ui.detail;
 
 import android.os.Bundle;
 import android.view.View;

@@ -14,12 +14,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.inflames1986.myamazingnotes.R;
 import com.inflames1986.myamazingnotes.domain.DeviceNotesRepository;
 import com.inflames1986.myamazingnotes.domain.Note;
+import com.inflames1986.myamazingnotes.ui.Router;
 
 import java.util.List;
 
@@ -28,6 +30,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public interface OnNoteClicked {
         void onNoteOnClicked(Note note);
     }
+
+    private Router router;
 
     public static NotesListPresenter presenter;
 
@@ -61,6 +65,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        router = new Router(getChildFragmentManager());
+
         presenter = new NotesListPresenter(this, new DeviceNotesRepository());
 
         adapter = new NotesAdapter(this);
@@ -75,6 +81,10 @@ public class NotesListFragment extends Fragment implements NotesListView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (savedInstanceState == null) {
+            router.showNotesList();
+        }
 
         adapter.setLongClickedListener(new NotesAdapter.OnNoteLongClickedListener() {
             @Override
@@ -91,6 +101,11 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
 
         presenter.requestNotes();
+
+        DefaultItemAnimator animator = new DefaultItemAnimator();
+        animator.setRemoveDuration(1000L);
+
+        notesList.setItemAnimator(animator);
     }
 
     @Override
@@ -140,7 +155,7 @@ public class NotesListFragment extends Fragment implements NotesListView {
             return true;
         }
         if (item.getItemId() == R.id.action_update) {
-            Toast.makeText(requireContext(), "Update " + getString(selectedNote.getTitle()),  Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Update " + getString(selectedNote.getTitle()), Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onContextItemSelected(item);
