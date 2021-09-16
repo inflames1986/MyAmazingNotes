@@ -44,4 +44,10 @@
         android:icon="@color/design_default_color_on_primary"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_add"
+        android:title="@string/action_add"
+        android:icon="@color/design_default_color_on_primary"
+        app:showAsAction="ifRoom" />
+
 </menu>

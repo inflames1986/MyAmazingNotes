@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,9 +21,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     private final ArrayList<Note> date = new ArrayList<>();
 
+    private Fragment fragment;
+
+    public NotesAdapter(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
     public void setNotes(List<Note> toSet) {
         date.clear();
         date.addAll(toSet);
+    }
+
+    public void addNote(Note note) {
+        date.add(note);
 
     }
 
@@ -56,6 +67,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return date.size();
     }
 
+
     class NotesViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView title;
@@ -66,6 +78,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            fragment.registerForContextMenu(itemView);
+
             title = itemView.findViewById(R.id.note_title);
             image = itemView.findViewById(R.id.note_image);
             desc = itemView.findViewById(R.id.note_description);

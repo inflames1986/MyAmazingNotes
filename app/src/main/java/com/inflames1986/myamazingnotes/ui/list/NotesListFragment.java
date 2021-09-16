@@ -25,13 +25,15 @@ public class NotesListFragment extends Fragment implements NotesListView {
         void onNoteOnClicked(Note note);
     }
 
-    private NotesListPresenter presenter;
+    public static NotesListPresenter presenter;
 
-    private final NotesAdapter adapter = new NotesAdapter();
+    public static NotesAdapter adapter;
 
     private ProgressBar progressBar;
 
     private OnNoteClicked onNoteClicked;
+
+    private RecyclerView notesList;
 
 
     @Override
@@ -54,6 +56,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
         super.onCreate(savedInstanceState);
 
         presenter = new NotesListPresenter(this, new DeviceNotesRepository());
+
+        adapter = new NotesAdapter(this);
     }
 
     @Nullable
@@ -66,15 +70,13 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        progressBar = view.findViewById(R.id.progress_bar);
-
-        RecyclerView notesList = view.findViewById(R.id.notes_list);
+        notesList = view.findViewById(R.id.notes_list);
         notesList.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         notesList.setAdapter(adapter);
 
+
         presenter.requestNotes();
     }
-
 
     @Override
     public void showNotes(List<Note> notes) {
@@ -90,5 +92,13 @@ public class NotesListFragment extends Fragment implements NotesListView {
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onNoteAdded(Note note) {
+        adapter.addNote(note);
+        adapter.notifyItemInserted(adapter.getItemCount() - 1);
+
+        notesList.smoothScrollToPosition(adapter.getItemCount() - 1);
     }
 }

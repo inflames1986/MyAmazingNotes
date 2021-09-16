@@ -12,5 +12,7 @@ public interface NotesListView {
 
     void hideProgress();
 
+    void onNoteAdded(Note note);
+
 
 }
