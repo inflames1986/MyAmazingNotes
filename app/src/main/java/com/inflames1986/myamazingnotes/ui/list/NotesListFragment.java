@@ -2,10 +2,14 @@ package com.inflames1986.myamazingnotes.ui.list;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +38,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
     private OnNoteClicked onNoteClicked;
 
     private RecyclerView notesList;
+
+    private Note selectedNote;
 
 
     @Override
@@ -70,6 +76,15 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        adapter.setLongClickedListener(new NotesAdapter.OnNoteLongClickedListener() {
+            @Override
+            public void onNoteLongClicked(Note note) {
+
+                selectedNote = note;
+
+            }
+        });
+
         notesList = view.findViewById(R.id.notes_list);
         notesList.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         notesList.setAdapter(adapter);
@@ -100,5 +115,26 @@ public class NotesListFragment extends Fragment implements NotesListView {
         adapter.notifyItemInserted(adapter.getItemCount() - 1);
 
         notesList.smoothScrollToPosition(adapter.getItemCount() - 1);
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater menuInflater = requireActivity().getMenuInflater();
+        menuInflater.inflate(R.menu.menu_notes_list_context, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_delete) {
+            Toast.makeText(requireContext(), "Delete " + getString(selectedNote.getTitle()), Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (item.getItemId() == R.id.action_update) {
+            Toast.makeText(requireContext(), "Update " + getString(selectedNote.getTitle()),  Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onContextItemSelected(item);
     }
 }

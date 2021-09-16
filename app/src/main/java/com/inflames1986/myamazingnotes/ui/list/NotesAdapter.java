@@ -21,6 +21,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     private final ArrayList<Note> date = new ArrayList<>();
 
+    private  OnNoteClickedListener listener;
+
+    private OnNoteLongClickedListener longClickedListener;
+
+
+
     private Fragment fragment;
 
     public NotesAdapter(Fragment fragment) {
@@ -67,6 +73,34 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return date.size();
     }
 
+    public OnNoteClickedListener getListener() {
+        return listener;
+    }
+
+    public void setListener(OnNoteClickedListener listener) {
+        this.listener = listener;
+    }
+
+    public OnNoteLongClickedListener getLongClickedListener() {
+        return longClickedListener;
+    }
+
+    public void setLongClickedListener(OnNoteLongClickedListener longClickedListener) {
+        this.longClickedListener = longClickedListener;
+    }
+
+    interface OnNoteLongClickedListener {
+
+        void onNoteLongClicked(Note note);
+
+    }
+
+    interface OnNoteClickedListener {
+
+        void onNoteClicked(Note note);
+
+    }
+
 
     class NotesViewHolder extends RecyclerView.ViewHolder {
 
@@ -80,6 +114,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
             super(itemView);
 
             fragment.registerForContextMenu(itemView);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    itemView.showContextMenu();
+
+                    if (getLongClickedListener() != null) {
+                        getLongClickedListener().onNoteLongClicked(NotesAdapter.this.date.get(getAdapterPosition()));
+                    }
+                    return true;
+                }
+            });
 
             title = itemView.findViewById(R.id.note_title);
             image = itemView.findViewById(R.id.note_image);

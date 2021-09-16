@@ -39,6 +39,5 @@ public class NotesListPresenter {
                 view.onNoteAdded(data);
             }
         });
-
     }
 }
