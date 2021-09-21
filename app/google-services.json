@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "245882901197",
+    "project_id": "myamazingnotes-ba52b",
+    "storage_bucket": "myamazingnotes-ba52b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245882901197:android:017c3946015cc9b66ccf84",
+        "android_client_info": {
+          "package_name": "com.inflames1986.myamazingnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245882901197-mls5rilahdf0umcs1s66s23trl1t1ocj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inflames1986.myamazingnotes",
+            "certificate_hash": "836e21c7532938d34128a5e01e0ecf638f768a8f"
+          }
+        },
+        {
+          "client_id": "245882901197-isfo00a4tsh9vk2ht76omtuqvjl31b18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLWJuRLBYieQWAuwcBM13rQkUoLUDrfYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245882901197-isfo00a4tsh9vk2ht76omtuqvjl31b18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
