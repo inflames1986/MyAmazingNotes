@@ -52,5 +52,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
     implementation 'com.google.firebase:firebase-firestore'
+    implementation "io.grpc:grpc-okhttp:1.32.2"
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }
