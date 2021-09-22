@@ -3,12 +3,12 @@ package com.inflames1986.myamazingnotes.domain;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.inflames1986.myamazingnotes.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MockDeviceNotesRepository implements NotesRepository {
+
+    public static final NotesRepository INSTANCE = new FireStoreNotesRepository();
 
     private Handler handler = new Handler(Looper.getMainLooper());
 
@@ -16,11 +16,11 @@ public class MockDeviceNotesRepository implements NotesRepository {
 
     public MockDeviceNotesRepository() {
 
-        notes.add(new Note(R.string.note_monday, R.string.image_url, R.string.descThueday, R.string.firstJan));
-        notes.add(new Note(R.string.note_tuesday, R.string.image_url2, R.string.descTuesday, R.string.secondJan));
-        notes.add(new Note(R.string.note_wednesday, R.string.image_url3, R.string.descWednesday, R.string.thirdJan));
-        notes.add(new Note(R.string.note_thursday, R.string.image_url4, R.string.descThursday, R.string.fourthJan));
-        notes.add(new Note(R.string.note_friday, R.string.image_url5, R.string.descFriday, R.string.fifthJan));
+        notes.add(new Note("id1", "Понедельник", "https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg", "Заметка 1", "02.03.02"));
+        notes.add(new Note("id1", "Понедельник", "https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg", "Заметка 1", "02.03.02"));
+        notes.add(new Note("id1", "Понедельник", "https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg", "Заметка 1", "02.03.02"));
+        notes.add(new Note("id1", "Понедельник", "https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg", "Заметка 1", "02.03.02"));
+        notes.add(new Note("id1", "Понедельник", "https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg", "Заметка 1", "02.03.02"));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class MockDeviceNotesRepository implements NotesRepository {
     }
 
     @Override
-    public void addNote(int title, int image, int desc, int date, Callback<Note> callback) {
+    public void addNote(String title, String image, String desc, String date, Callback<Note> callback) {
 
         new Thread(new Runnable() {
             @Override
@@ -59,7 +59,7 @@ public class MockDeviceNotesRepository implements NotesRepository {
                     e.printStackTrace();
                 }
 
-                Note result = new Note(R.string.note_monday, R.string.image_url, R.string.descThueday, R.string.firstJan);
+                Note result = new Note("id1", "Понедельник", "https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg", "Заметка 1", "02.03.02");
 
                 notes.add(result);
 

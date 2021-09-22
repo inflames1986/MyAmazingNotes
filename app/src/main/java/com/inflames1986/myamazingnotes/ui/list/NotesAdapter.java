@@ -56,12 +56,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotesAdapter.NotesViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NotesViewHolder holder, int position) {
 
         Note note = date.get(position);
 
         holder.getTitle().setText(note.getTitle());
-        Glide.with(holder.getImage()).load(holder.getImage().getContext().getString(note.getImage())).into(holder.getImage());
+        Glide.with(holder.getImage()).load(note.getImage()).
+        centerCrop().into(holder.getImage());
         holder.getDesc().setText(note.getDesc());
         holder.getDate().setText(note.getDate());
 

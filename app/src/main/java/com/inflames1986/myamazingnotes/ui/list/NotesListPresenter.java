@@ -1,6 +1,5 @@
 package com.inflames1986.myamazingnotes.ui.list;
 
-import com.inflames1986.myamazingnotes.R;
 import com.inflames1986.myamazingnotes.domain.Callback;
 import com.inflames1986.myamazingnotes.domain.Note;
 import com.inflames1986.myamazingnotes.domain.NotesRepository;
@@ -28,9 +27,9 @@ public class NotesListPresenter {
         });
     }
 
-    public void addNote(int title, int image, int desc, int date) {
+    public void addNote(String title, String image, String desc, String date) {
 
-        repository.addNote(R.string.note_monday, R.string.image_url, R.string.descThueday, R.string.firstJan, new Callback<Note>() {
+        repository.addNote("Понедельник", "https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg", "заметка заметка", "23.12.2021", new Callback<Note>() {
             @Override
             public void onSuccess(Note data) {
                 view.onNoteAdded(data);

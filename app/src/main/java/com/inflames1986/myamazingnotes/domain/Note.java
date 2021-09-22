@@ -3,51 +3,30 @@ package com.inflames1986.myamazingnotes.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.StringRes;
-
 import java.util.Objects;
 
 public class Note implements Parcelable {
 
-    public Note(int title, int image, int desc, int date) {
+    private final String id;
+    private String title;
+    private final String image;
+    private final String desc;
+    private final String date;
+
+    public Note(String id, String title, String image, String desc, String date) {
+        this.id = id;
         this.title = title;
         this.image = image;
         this.desc = desc;
         this.date = date;
     }
 
-    public int getTitle() {
-        return title;
-    }
-
-    public int getImage() { return image;  }
-
-    public int getDesc() {
-        return desc;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    @StringRes
-    private final int title;
-
-    @StringRes
-    private final int image;
-
-    @StringRes
-    private final int desc;
-
-    @StringRes
-    private final int date;
-
-
     protected Note(Parcel in) {
-        title = in.readInt();
-        image = in.readInt();
-        desc = in.readInt();
-        date = in.readInt();
+        id = in.readString();
+        title = in.readString();
+        image = in.readString();
+        desc = in.readString();
+        date = in.readString();
     }
 
     public static final Creator<Note> CREATOR = new Creator<Note>() {
@@ -62,17 +41,28 @@ public class Note implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getId() {
+        return id;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(title);
-        parcel.writeInt(image);
-        parcel.writeInt(desc);
-        parcel.writeInt(date);
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     @Override
@@ -80,11 +70,29 @@ public class Note implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Note note = (Note) o;
-        return title == note.title && image == note.image && desc == note.desc && date == note.date;
+        return Objects.equals(id, note.id) &&
+                Objects.equals(title, note.title) &&
+                Objects.equals(image, note.image) &&
+                Objects.equals(desc, note.desc) &&
+                Objects.equals(date, note.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, image, desc, date);
+        return Objects.hash(id, title, image, desc, date);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(image);
+        dest.writeString(desc);
+        dest.writeSerializable(date);
     }
 }

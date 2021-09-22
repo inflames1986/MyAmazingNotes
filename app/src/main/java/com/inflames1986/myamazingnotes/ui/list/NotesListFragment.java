@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.inflames1986.myamazingnotes.R;
-import com.inflames1986.myamazingnotes.domain.MockDeviceNotesRepository;
+import com.inflames1986.myamazingnotes.domain.FireStoreNotesRepository;
 import com.inflames1986.myamazingnotes.domain.Note;
 
 import java.util.List;
@@ -61,7 +61,7 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        presenter = new NotesListPresenter(this, new MockDeviceNotesRepository());
+        presenter = new NotesListPresenter(this, new FireStoreNotesRepository());
 
         adapter = new NotesAdapter(this);
     }
@@ -140,7 +140,7 @@ public class NotesListFragment extends Fragment implements NotesListView {
             return true;
         }
         if (item.getItemId() == R.id.action_update) {
-            Toast.makeText(requireContext(), "Update " + getString(selectedNote.getTitle()),  Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Update " + selectedNote.getTitle(),  Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onContextItemSelected(item);

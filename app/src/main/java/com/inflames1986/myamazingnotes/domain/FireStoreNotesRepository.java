@@ -1,7 +1,5 @@
 package com.inflames1986.myamazingnotes.domain;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,7 +11,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FireStoreNotesRepository implements NotesRepository{
+public class FireStoreNotesRepository implements NotesRepository {
 
     public static final String NOTES = "notes";
     public static final String TITLE = "title";
@@ -41,9 +39,11 @@ public class FireStoreNotesRepository implements NotesRepository{
                                 String desc = document.get(DESC, String.class);
                                 String date = document.get(DATE, String.class);
 
-                                result.add(new Note(document.getId(), )
+                                result.add(new Note(document.getId(), title, image, desc, date));
 
                             }
+
+                            callback.onSuccess(result);
                         } else {
 
                         }
@@ -52,7 +52,7 @@ public class FireStoreNotesRepository implements NotesRepository{
     }
 
     @Override
-    public void addNote(int title, int image, int desc, int date, Callback<Note> callback) {
+    public void addNote(String title, String image, String desc, String date, Callback<Note> callback) {
 
     }
 
