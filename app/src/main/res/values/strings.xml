@@ -36,4 +36,5 @@
     <string name="action_add">Add</string>
     <string name="action_delete">Delete</string>
     <string name="action_update">Update</string>
+    <string name="google_auth">AuthGoogle</string>
 </resources>
