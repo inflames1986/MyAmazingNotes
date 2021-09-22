@@ -3,6 +3,7 @@ package com.inflames1986.myamazingnotes.domain;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -12,6 +13,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class FireStoreNotesRepository implements NotesRepository {
 
@@ -68,7 +70,7 @@ public class FireStoreNotesRepository implements NotesRepository {
                     public void onComplete(@NonNull Task<DocumentReference> task) {
 
                         if (task.isSuccessful()) {
-                           String noteId = task.getResult().getId();
+                            String noteId = Objects.requireNonNull(task.getResult()).getId();
 
                             callback.onSuccess(new Note(noteId, title, image, desc, date));
                         }
@@ -79,5 +81,15 @@ public class FireStoreNotesRepository implements NotesRepository {
     @Override
     public void removeNote(Note note, Callback<Void> callback) {
 
+        db.collection(NOTES)
+                .document(note.getId())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        callback.onSuccess(unused);
+
+                    }
+                });
     }
 }
