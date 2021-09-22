@@ -36,13 +36,12 @@ public class AuthFragment extends Fragment {
             if (accountTask.isSuccessful()) {
                 GoogleSignInAccount account = accountTask.getResult();
 
-                getChildFragmentManager()
+                getParentFragmentManager()
                         .beginTransaction()
                         .replace(R.id.container, new NotesListFragment())
                         .addToBackStack(null)
                         .commit();
             }
-
         }
     });
 
@@ -63,7 +62,6 @@ public class AuthFragment extends Fragment {
             public void onClick(View view) {
 
                 launcher.launch(client.getSignInIntent());
-
             }
         });
     }
