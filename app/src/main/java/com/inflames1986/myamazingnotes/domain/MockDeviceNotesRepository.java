@@ -8,13 +8,13 @@ import com.inflames1986.myamazingnotes.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeviceNotesRepository implements NotesRepository {
+public class MockDeviceNotesRepository implements NotesRepository {
 
     private Handler handler = new Handler(Looper.getMainLooper());
 
     private final  ArrayList<Note> notes = new ArrayList<>();
 
-    public DeviceNotesRepository() {
+    public MockDeviceNotesRepository() {
 
         notes.add(new Note(R.string.note_monday, R.string.image_url, R.string.descThueday, R.string.firstJan));
         notes.add(new Note(R.string.note_tuesday, R.string.image_url2, R.string.descTuesday, R.string.secondJan));

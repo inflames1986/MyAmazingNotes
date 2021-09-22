@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.inflames1986.myamazingnotes.R;
-import com.inflames1986.myamazingnotes.domain.DeviceNotesRepository;
+import com.inflames1986.myamazingnotes.domain.MockDeviceNotesRepository;
 import com.inflames1986.myamazingnotes.domain.Note;
 
 import java.util.List;
@@ -61,7 +61,7 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        presenter = new NotesListPresenter(this, new DeviceNotesRepository());
+        presenter = new NotesListPresenter(this, new MockDeviceNotesRepository());
 
         adapter = new NotesAdapter(this);
     }
