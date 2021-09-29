@@ -1,4 +1,4 @@
-package com.inflames1986.myamazingnotes.ui.details;
+package com.inflames1986.myamazingnotes.ui.detail;
 
 import android.os.Bundle;
 import android.view.View;
@@ -39,9 +39,6 @@ public class NoteDetailsFragment extends Fragment {
 
         TextView title = view.findViewById(R.id.note_name);
         title.setText(note.getTitle());
-
-//        ImageView image = view.findViewById(R.id.note_image);
-//        image.setImageResource(note.getImage());
 
         TextView desc = view.findViewById(R.id.note_desc);
         desc.setText(note.getDesc());

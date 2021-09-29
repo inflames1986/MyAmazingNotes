@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,9 +21,24 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     private final ArrayList<Note> date = new ArrayList<>();
 
+    private OnNoteClickedListener listener;
+
+    private OnNoteLongClickedListener longClickedListener;
+
+
+    private final Fragment fragment;
+
+    public NotesAdapter(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
     public void setNotes(List<Note> toSet) {
         date.clear();
         date.addAll(toSet);
+    }
+
+    public void addNote(Note note) {
+        date.add(note);
 
     }
 
@@ -56,6 +72,47 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return date.size();
     }
 
+    public OnNoteClickedListener getListener() {
+        return listener;
+    }
+
+    public void setListener(OnNoteClickedListener listener) {
+        this.listener = listener;
+    }
+
+    public OnNoteLongClickedListener getLongClickedListener() {
+        return longClickedListener;
+    }
+
+    public void setLongClickedListener(OnNoteLongClickedListener longClickedListener) {
+        this.longClickedListener = longClickedListener;
+    }
+
+    public int removeNote(Note selectedNote) {
+
+        for (int i = 0; i < date.size(); i++) {
+            if (date.get(i).equals(selectedNote)) {
+                date.remove(i);
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    interface OnNoteLongClickedListener {
+
+        void onNoteLongClicked(Note note);
+
+    }
+
+    interface OnNoteClickedListener {
+
+        void onNoteClicked(Note note);
+
+    }
+
+
     class NotesViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView title;
@@ -66,6 +123,21 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            fragment.registerForContextMenu(itemView);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    itemView.showContextMenu();
+
+                    if (getLongClickedListener() != null) {
+                        getLongClickedListener().onNoteLongClicked(NotesAdapter.this.date.get(getAdapterPosition()));
+                    }
+                    return true;
+                }
+            });
+
             title = itemView.findViewById(R.id.note_title);
             image = itemView.findViewById(R.id.note_image);
             desc = itemView.findViewById(R.id.note_description);

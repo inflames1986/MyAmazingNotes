@@ -14,8 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.inflames1986.myamazingnotes.R;
 import com.inflames1986.myamazingnotes.domain.Note;
-import com.inflames1986.myamazingnotes.ui.details.NoteDetailsActivity;
-import com.inflames1986.myamazingnotes.ui.details.NoteDetailsFragment;
+import com.inflames1986.myamazingnotes.ui.detail.NoteDetailsActivity;
+import com.inflames1986.myamazingnotes.ui.detail.NoteDetailsFragment;
 import com.inflames1986.myamazingnotes.ui.list.NotesListFragment;
 
 public class NoteNavigationDrawerActivity extends AppCompatActivity implements NotesListFragment.OnNoteClicked {
