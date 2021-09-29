@@ -113,10 +113,32 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
     @Override
     public void onNoteAdded(Note note) {
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.alert_title_add)
+                .setMessage(R.string.alert_message_add)
+                .setIcon(R.drawable.common_google_signin_btn_icon_dark_focused)
+                .setPositiveButton(R.string.positive, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
         adapter.addNote(note);
         adapter.notifyItemInserted(adapter.getItemCount() - 1);
 
         notesList.smoothScrollToPosition(adapter.getItemCount() - 1);
+
+                    }
+                })
+
+                .setNegativeButton(R.string.negative, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+
+                .create()
+                .show();
     }
 
     @Override

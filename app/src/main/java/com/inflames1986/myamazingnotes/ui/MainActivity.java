@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements NotesListFragment
                 }
 
                 if (item.getItemId() == R.id.action_add) {
+
+
                     NotesListFragment.presenter.addNote("Понедельник", "https://img5.goodfon.ru/original/3200x1200/d/a2/osen-listia-fon-doski-colorful-klen-wood-background-autumn-9.jpg", "Заметка 1", "02.03.02");
                     return true;
                 }
