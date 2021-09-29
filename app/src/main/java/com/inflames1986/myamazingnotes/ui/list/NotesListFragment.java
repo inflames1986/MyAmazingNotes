@@ -1,6 +1,7 @@
 package com.inflames1986.myamazingnotes.ui.list;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -119,10 +121,34 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
     @Override
     public void onNoteRemoved(Note selectedNote) {
-        int index = adapter.removeNote(selectedNote);
 
-        adapter.notifyItemRemoved(index);
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.alert_title)
+                .setMessage(R.string.alert_message)
+                .setIcon(R.drawable.common_google_signin_btn_icon_dark_focused)
+                .setPositiveButton(R.string.positive, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        int index = adapter.removeNote(selectedNote);
+
+                        adapter.notifyItemRemoved(index);
+
+                    }
+                })
+
+                .setNegativeButton(R.string.negative, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+
+                .create()
+                .show();
     }
+
 
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
@@ -136,11 +162,12 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_delete) {
 
+
             presenter.removeNote(selectedNote);
             return true;
         }
         if (item.getItemId() == R.id.action_update) {
-            Toast.makeText(requireContext(), "Update " + selectedNote.getTitle(),  Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Update " + selectedNote.getTitle(), Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onContextItemSelected(item);

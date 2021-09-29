@@ -37,4 +37,8 @@
     <string name="action_delete">Delete</string>
     <string name="action_update">Update</string>
     <string name="google_auth">AuthGoogle</string>
+    <string name="alert_title">Хотите ли вы удалить запись?</string>
+    <string name="alert_message">Удалить запись?</string>
+    <string name="positive">Positive</string>
+    <string name="negative">Negative</string>
 </resources>

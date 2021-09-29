@@ -91,6 +91,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     public int removeNote(Note selectedNote) {
 
+
         for (int i = 0; i < date.size(); i++) {
             if (date.get(i).equals(selectedNote)) {
                 date.remove(i);
